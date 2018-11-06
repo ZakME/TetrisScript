@@ -101,6 +101,8 @@ class OPiece {
 // Init T Tetromino
 class TPiece {
     constructor() {
+        this.y;
+        this.x;
         this.x1 = 0;
         this.y1 = 0;
         this.x2 = 40;
@@ -131,7 +133,7 @@ class TPiece {
         }
 
         if (keyCode == 32 && this.rotVal == 2) {
-            this.x1 = this.x1 + 80;   
+            this.x1 = this.x1 + 80;
             this.y1 = this.y1 - 40;
             this.x2 = this.x2 + 40;
             this.y3 = this.y3 + 40;
@@ -165,14 +167,31 @@ class TPiece {
     }
 
     move() {
-        setTimeout(this.moveLogic(), 500);
+        setTimeout(this.moveLogic(), 5000);
     }
 
     moveLogic() {
-        this.y1 = this.y1 + 40;
-        this.y2 = this.y2 + 40;
-        this.y3 = this.y3 + 40;
-        this.y4 = this.y4 + 40;
+        if (keyCode == 40) {
+            this.y1 = this.y1 + 40;
+            this.y2 = this.y2 + 40;
+            this.y3 = this.y3 + 40;
+            this.y4 = this.y4 + 40;
+        }
+
+        if (keyCode == 37) {
+            this.x1 = this.x1 - 40;
+            this.x2 = this.x2 - 40;
+            this.x3 = this.x3 - 40;
+            this.x4 = this.x4 - 40;
+        }
+
+        if (keyCode == 39) {
+            this.x1 = this.x1 + 40;
+            this.x2 = this.x2 + 40;
+            this.x3 = this.x3 + 40;
+            this.x4 = this.x4 + 40;
+        }
+
     }
 }
 
