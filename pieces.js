@@ -2,6 +2,7 @@
 
 // Init I Tetromino
 class IPiece {
+    // Assign piece properties like starting positions and colors
     constructor() {
         this.x1 = 0;
         this.y1 = 0;
@@ -13,8 +14,10 @@ class IPiece {
         this.y4 = 0;
         this.col = "#00F3FF";
         this.rotVal = 1;
+        this.isPlaced = false;
     }
 
+    // Draw the piece
     show() {
         fill(this.col);
         rect(this.x1, this.y1, 40, 40);
@@ -52,15 +55,36 @@ class IPiece {
 
     }
 
+    // I dont even know if this function is needed
     move() {
         setTimeout(this.moveLogic(), 500);
     }
 
+    // Logic for moving the pieces
     moveLogic() {
-        this.y1 = this.y1 + 40;
-        this.y2 = this.y2 + 40;
-        this.y3 = this.y3 + 40;
-        this.y4 = this.y4 + 40;
+        if (this.isPlaced == false) {
+            if (keyCode == 40) {
+                this.y1 = this.y1 + 40;
+                this.y2 = this.y2 + 40;
+                this.y3 = this.y3 + 40;
+                this.y4 = this.y4 + 40;
+            }
+
+            if (keyCode == 37) {
+                this.x1 = this.x1 - 40;
+                this.x2 = this.x2 - 40;
+                this.x3 = this.x3 - 40;
+                this.x4 = this.x4 - 40;
+            }
+
+            if (keyCode == 39) {
+                this.x1 = this.x1 + 40;
+                this.x2 = this.x2 + 40;
+                this.x3 = this.x3 + 40;
+                this.x4 = this.x4 + 40;
+            }
+
+        }
     }
 }
 
@@ -76,6 +100,7 @@ class OPiece {
         this.x4 = 40;
         this.y4 = 40;
         this.col = "#FFF300";
+        this.isPlaced = false;
     }
 
     show() {
@@ -86,15 +111,40 @@ class OPiece {
         rect(this.x4, this.y4, 40, 40);
     }
 
+    // this function is here because the program wont work without it
+    rotate() {
+        let k;
+        k = 0;
+    }
+
     move() {
-        setTimeout(this.moveLogic(), 500);
+        setTimeout(this.moveLogic(), 5000);
     }
 
     moveLogic() {
-        this.y1 = this.y1 + 40;
-        this.y2 = this.y2 + 40;
-        this.y3 = this.y3 + 40;
-        this.y4 = this.y4 + 40;
+        if (this.isPlaced == false) {
+            if (keyCode == 40) {
+                this.y1 = this.y1 + 40;
+                this.y2 = this.y2 + 40;
+                this.y3 = this.y3 + 40;
+                this.y4 = this.y4 + 40;
+            }
+
+            if (keyCode == 37) {
+                this.x1 = this.x1 - 40;
+                this.x2 = this.x2 - 40;
+                this.x3 = this.x3 - 40;
+                this.x4 = this.x4 - 40;
+            }
+
+            if (keyCode == 39) {
+                this.x1 = this.x1 + 40;
+                this.x2 = this.x2 + 40;
+                this.x3 = this.x3 + 40;
+                this.x4 = this.x4 + 40;
+            }
+
+        }
     }
 }
 
@@ -113,6 +163,7 @@ class TPiece {
         this.y4 = 40;
         this.col = "#B900FF";
         this.rotVal = 1;
+        this.isPlaced = false;
     }
 
     show() {
@@ -171,27 +222,29 @@ class TPiece {
     }
 
     moveLogic() {
-        if (keyCode == 40) {
-            this.y1 = this.y1 + 40;
-            this.y2 = this.y2 + 40;
-            this.y3 = this.y3 + 40;
-            this.y4 = this.y4 + 40;
-        }
+        if (this.isPlaced == false) {
+            if (keyCode == 40) {
+                this.y1 = this.y1 + 40;
+                this.y2 = this.y2 + 40;
+                this.y3 = this.y3 + 40;
+                this.y4 = this.y4 + 40;
+            }
 
-        if (keyCode == 37) {
-            this.x1 = this.x1 - 40;
-            this.x2 = this.x2 - 40;
-            this.x3 = this.x3 - 40;
-            this.x4 = this.x4 - 40;
-        }
+            if (keyCode == 37) {
+                this.x1 = this.x1 - 40;
+                this.x2 = this.x2 - 40;
+                this.x3 = this.x3 - 40;
+                this.x4 = this.x4 - 40;
+            }
 
-        if (keyCode == 39) {
-            this.x1 = this.x1 + 40;
-            this.x2 = this.x2 + 40;
-            this.x3 = this.x3 + 40;
-            this.x4 = this.x4 + 40;
-        }
+            if (keyCode == 39) {
+                this.x1 = this.x1 + 40;
+                this.x2 = this.x2 + 40;
+                this.x3 = this.x3 + 40;
+                this.x4 = this.x4 + 40;
+            }
 
+        }
     }
 }
 
@@ -208,6 +261,7 @@ class SPiece {
         this.y4 = 40;
         this.col = "#FF0000";
         this.rotVal = 1;
+        this.isPlaced = false;
     }
 
     show() {
@@ -250,10 +304,29 @@ class SPiece {
     }
 
     moveLogic() {
-        this.y1 = this.y1 + 40;
-        this.y2 = this.y2 + 40;
-        this.y3 = this.y3 + 40;
-        this.y4 = this.y4 + 40;
+        if (this.isPlaced == false) {
+            if (keyCode == 40) {
+                this.y1 = this.y1 + 40;
+                this.y2 = this.y2 + 40;
+                this.y3 = this.y3 + 40;
+                this.y4 = this.y4 + 40;
+            }
+
+            if (keyCode == 37) {
+                this.x1 = this.x1 - 40;
+                this.x2 = this.x2 - 40;
+                this.x3 = this.x3 - 40;
+                this.x4 = this.x4 - 40;
+            }
+
+            if (keyCode == 39) {
+                this.x1 = this.x1 + 40;
+                this.x2 = this.x2 + 40;
+                this.x3 = this.x3 + 40;
+                this.x4 = this.x4 + 40;
+            }
+
+        }
     }
 }
 
@@ -270,6 +343,7 @@ class ZPiece {
         this.y4 = 40;
         this.col = "#26D104";
         this.rotVal = 1;
+        this.isPlaced = false;
     }
 
     show() {
@@ -312,10 +386,30 @@ class ZPiece {
     }
 
     moveLogic() {
-        this.y1 = this.y1 + 40;
-        this.y2 = this.y2 + 40;
-        this.y3 = this.y3 + 40;
-        this.y4 = this.y4 + 40;
+        if (this.isPlaced == false) {
+            if (keyCode == 40) {
+                this.y1 = this.y1 + 40;
+                this.y2 = this.y2 + 40;
+                this.y3 = this.y3 + 40;
+                this.y4 = this.y4 + 40;
+            }
+
+            if (keyCode == 37) {
+                this.x1 = this.x1 - 40;
+                this.x2 = this.x2 - 40;
+                this.x3 = this.x3 - 40;
+                this.x4 = this.x4 - 40;
+            }
+
+            if (keyCode == 39) {
+                this.x1 = this.x1 + 40;
+                this.x2 = this.x2 + 40;
+                this.x3 = this.x3 + 40;
+                this.x4 = this.x4 + 40;
+            }
+
+        }
+
     }
 }
 
@@ -332,6 +426,7 @@ class JPiece {
         this.y4 = 80;
         this.col = "#FF00DC";
         this.rotVal = 1;
+        this.isPlaced = false;
     }
 
     show() {
@@ -392,10 +487,29 @@ class JPiece {
     }
 
     moveLogic() {
-        this.y1 = this.y1 + 40;
-        this.y2 = this.y2 + 40;
-        this.y3 = this.y3 + 40;
-        this.y4 = this.y4 + 40;
+        if (this.isPlaced == false) {
+            if (keyCode == 40) {
+                this.y1 = this.y1 + 40;
+                this.y2 = this.y2 + 40;
+                this.y3 = this.y3 + 40;
+                this.y4 = this.y4 + 40;
+            }
+
+            if (keyCode == 37) {
+                this.x1 = this.x1 - 40;
+                this.x2 = this.x2 - 40;
+                this.x3 = this.x3 - 40;
+                this.x4 = this.x4 - 40;
+            }
+
+            if (keyCode == 39) {
+                this.x1 = this.x1 + 40;
+                this.x2 = this.x2 + 40;
+                this.x3 = this.x3 + 40;
+                this.x4 = this.x4 + 40;
+            }
+
+        }
     }
 }
 
@@ -412,6 +526,7 @@ class LPiece {
         this.y4 = 80;
         this.col = "#FF8B00";
         this.rotVal = 1;
+        this.isPlaced = false;
     }
 
     show() {
@@ -472,9 +587,28 @@ class LPiece {
     }
 
     moveLogic() {
-        this.y1 = this.y1 + 40;
-        this.y2 = this.y2 + 40;
-        this.y3 = this.y3 + 40;
-        this.y4 = this.y4 + 40;
+        if (this.isPlaced == false) {
+            if (keyCode == 40) {
+                this.y1 = this.y1 + 40;
+                this.y2 = this.y2 + 40;
+                this.y3 = this.y3 + 40;
+                this.y4 = this.y4 + 40;
+            }
+
+            if (keyCode == 37) {
+                this.x1 = this.x1 - 40;
+                this.x2 = this.x2 - 40;
+                this.x3 = this.x3 - 40;
+                this.x4 = this.x4 - 40;
+            }
+
+            if (keyCode == 39) {
+                this.x1 = this.x1 + 40;
+                this.x2 = this.x2 + 40;
+                this.x3 = this.x3 + 40;
+                this.x4 = this.x4 + 40;
+            }
+
+        }
     }
 }
