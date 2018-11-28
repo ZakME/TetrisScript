@@ -58,10 +58,22 @@ class IPiece {
     // I dont even know if this function is needed
     move() {
         setTimeout(this.moveLogic(), 500);
+        setTimeout(this.moveSide(), 500);
     }
 
     // Logic for moving the pieces
     moveLogic() {
+        if (this.isPlaced == false) {
+            if (frameCount % 30 == 0) {
+                this.y1 = this.y1 + 40;
+                this.y2 = this.y2 + 40;
+                this.y3 = this.y3 + 40;
+                this.y4 = this.y4 + 40;
+            }
+        }
+    }
+
+    moveSide() {
         if (this.isPlaced == false) {
             if (keyCode == 40) {
                 this.y1 = this.y1 + 40;
@@ -118,10 +130,23 @@ class OPiece {
     }
 
     move() {
-        setTimeout(this.moveLogic(), 5000);
+        setTimeout(this.moveLogic(), 500);
+        setTimeout(this.moveSide(), 500);
     }
 
+    // Logic for moving the pieces
     moveLogic() {
+        if (this.isPlaced == false) {
+            if (frameCount % 30 == 0) {
+                this.y1 = this.y1 + 40;
+                this.y2 = this.y2 + 40;
+                this.y3 = this.y3 + 40;
+                this.y4 = this.y4 + 40;
+            }
+        }
+    }
+
+    moveSide() {
         if (this.isPlaced == false) {
             if (keyCode == 40) {
                 this.y1 = this.y1 + 40;
@@ -218,10 +243,23 @@ class TPiece {
     }
 
     move() {
-        setTimeout(this.moveLogic(), 5000);
+        setTimeout(this.moveLogic(), 500);
+        setTimeout(this.moveSide(), 500);
     }
 
+    // Logic for moving the pieces
     moveLogic() {
+        if (this.isPlaced == false) {
+            if (frameCount % 30 == 0) {
+                this.y1 = this.y1 + 40;
+                this.y2 = this.y2 + 40;
+                this.y3 = this.y3 + 40;
+                this.y4 = this.y4 + 40;
+            }
+        }
+    }
+
+    moveSide() {
         if (this.isPlaced == false) {
             if (keyCode == 40) {
                 this.y1 = this.y1 + 40;
@@ -301,9 +339,22 @@ class SPiece {
 
     move() {
         setTimeout(this.moveLogic(), 500);
+        setTimeout(this.moveSide(), 500);
     }
 
+    // Logic for moving the pieces
     moveLogic() {
+        if (this.isPlaced == false) {
+            if (frameCount % 30 == 0) {
+                this.y1 = this.y1 + 40;
+                this.y2 = this.y2 + 40;
+                this.y3 = this.y3 + 40;
+                this.y4 = this.y4 + 40;
+            }
+        }
+    }
+
+    moveSide() {
         if (this.isPlaced == false) {
             if (keyCode == 40) {
                 this.y1 = this.y1 + 40;
@@ -383,9 +434,22 @@ class ZPiece {
 
     move() {
         setTimeout(this.moveLogic(), 500);
+        setTimeout(this.moveSide(), 500);
     }
 
+    // Logic for moving the pieces
     moveLogic() {
+        if (this.isPlaced == false) {
+            if (frameCount % 30 == 0) {
+                this.y1 = this.y1 + 40;
+                this.y2 = this.y2 + 40;
+                this.y3 = this.y3 + 40;
+                this.y4 = this.y4 + 40;
+            }
+        }
+    }
+
+    moveSide() {
         if (this.isPlaced == false) {
             if (keyCode == 40) {
                 this.y1 = this.y1 + 40;
@@ -409,7 +473,6 @@ class ZPiece {
             }
 
         }
-
     }
 }
 
@@ -484,9 +547,22 @@ class JPiece {
 
     move() {
         setTimeout(this.moveLogic(), 500);
+        setTimeout(this.moveSide(), 500);
     }
 
+    // Logic for moving the pieces
     moveLogic() {
+        if (this.isPlaced == false) {
+            if (frameCount % 30 == 0) {
+                this.y1 = this.y1 + 40;
+                this.y2 = this.y2 + 40;
+                this.y3 = this.y3 + 40;
+                this.y4 = this.y4 + 40;
+            }
+        }
+    }
+
+    moveSide() {
         if (this.isPlaced == false) {
             if (keyCode == 40) {
                 this.y1 = this.y1 + 40;
@@ -584,9 +660,22 @@ class LPiece {
 
     move() {
         setTimeout(this.moveLogic(), 500);
+        setTimeout(this.moveSide(), 500);
     }
 
+    // Logic for moving the pieces
     moveLogic() {
+        if (this.isPlaced == false) {
+            if (frameCount % 30 == 0) {
+                this.y1 = this.y1 + 40;
+                this.y2 = this.y2 + 40;
+                this.y3 = this.y3 + 40;
+                this.y4 = this.y4 + 40;
+            }
+        }
+    }
+
+    moveSide() {
         if (this.isPlaced == false) {
             if (keyCode == 40) {
                 this.y1 = this.y1 + 40;
