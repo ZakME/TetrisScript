@@ -57,6 +57,9 @@ class Boxes {
                 gameMap[i + 5].boxUsed == true && gameMap[i + 6].boxUsed == true &&
                 gameMap[i + 7].boxUsed == true && gameMap[i + 8].boxUsed == true &&
                 gameMap[i + 9].boxUsed == true) {
+                for (let j = 0; j < 10; j++) {
+                    gameMap[i + j].boxUsed = false;
+                }
                 gameMap[i].col = 255;
                 fill(gameMap[i].col);
                 for (let j = 0; j < 10; j++) {
@@ -68,13 +71,13 @@ class Boxes {
                             tetrominos[z].y3 = tetrominos[z].y3 + 40;
                             tetrominos[z].y4 = tetrominos[z].y4 + 40;
                         }
-                        if (rectIntersect1(tetrominos[z], gameMap[i + j]) || rectIntersect2(tetrominos[z], gameMap[i + j]) ||
-                            rectIntersect3(tetrominos[z], gameMap[i + j]) || rectIntersect4(tetrominos[z], gameMap[i + j])) {
-                            tetrominos[z].y1 = tetrominos[z].y1 + 40;
-                            tetrominos[z].y2 = tetrominos[z].y2 + 40;
-                            tetrominos[z].y3 = tetrominos[z].y3 + 40;
-                            tetrominos[z].y4 = tetrominos[z].y4 + 40;
-                        }
+                        // if (rectIntersect1(tetrominos[z], gameMap[i + j]) || rectIntersect2(tetrominos[z], gameMap[i + j]) ||
+                        //     rectIntersect3(tetrominos[z], gameMap[i + j]) || rectIntersect4(tetrominos[z], gameMap[i + j])) {
+                        //     tetrominos[z].y1 = tetrominos[z].y1 + 40;
+                        //     tetrominos[z].y2 = tetrominos[z].y2 + 40;
+                        //     tetrominos[z].y3 = tetrominos[z].y3 + 40;
+                        //     tetrominos[z].y4 = tetrominos[z].y4 + 40;
+                        // }
                     }
                 }
             }
