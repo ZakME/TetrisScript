@@ -80,6 +80,7 @@ class Boxes {
                     //     tetrominos[z].y4 = tetrominos[z].y4 + 40;
                     //     tetrominos[z].isPlaced = false;
                     // }
+                    //
                 }
             }
             for (let j = 0; j < 10; j++) {
