@@ -57,31 +57,37 @@ class Boxes {
                 gameMap[i + 5].boxUsed == true && gameMap[i + 6].boxUsed == true &&
                 gameMap[i + 7].boxUsed == true && gameMap[i + 8].boxUsed == true &&
                 gameMap[i + 9].boxUsed == true) {
-                for (let j = 0; j < 10; j++) {
-                    gameMap[i + j].boxUsed = false;
-                }
-                gameMap[i].col = 255;
-                fill(gameMap[i].col);
-                for (let j = 0; j < 10; j++) {
-                    for (let z = 0; z < tetrominos.length; z++) {
-                        if (tetrominos[z].y1 < gameMap[i + j].y || tetrominos[z].y2 < gameMap[i + j].y ||
-                            tetrominos[z].y3 < gameMap[i + j].y || tetrominos[z].y4, gameMap[i + j].y) {
-                            tetrominos[z].y1 = tetrominos[z].y1 + 40;
-                            tetrominos[z].y2 = tetrominos[z].y2 + 40;
-                            tetrominos[z].y3 = tetrominos[z].y3 + 40;
-                            tetrominos[z].y4 = tetrominos[z].y4 + 40;
-                        }
-                        // if (rectIntersect1(tetrominos[z], gameMap[i + j]) || rectIntersect2(tetrominos[z], gameMap[i + j]) ||
-                        //     rectIntersect3(tetrominos[z], gameMap[i + j]) || rectIntersect4(tetrominos[z], gameMap[i + j])) {
-                        //     tetrominos[z].y1 = tetrominos[z].y1 + 40;
-                        //     tetrominos[z].y2 = tetrominos[z].y2 + 40;
-                        //     tetrominos[z].y3 = tetrominos[z].y3 + 40;
-                        //     tetrominos[z].y4 = tetrominos[z].y4 + 40;
-                        // }
+                // for (let j = 0; j < 10; j++) {
+                //     gameMap[i + j].boxUsed = false;
+                // }
+                // gameMap[i].col = 255;
+                // fill(gameMap[i].col);
+                for (let z = 0; z < tetrominos.length; z++) {
+                    // tetrominos.splice(z, 1);
+                    if (tetrominos[z].y1 < gameMap[i].y || tetrominos[z].y2 < gameMap[i].y ||
+                        tetrominos[z].y3 < gameMap[i].y || tetrominos[z].y4, gameMap[i].y) {
+                        tetrominos[z].y1 = tetrominos[z].y1 + 40;
+                        tetrominos[z].y2 = tetrominos[z].y2 + 40;
+                        tetrominos[z].y3 = tetrominos[z].y3 + 40;
+                        tetrominos[z].y4 = tetrominos[z].y4 + 40;
+                        tetrominos[z].isPlaced = false;
                     }
+                    // if (rectIntersect1(tetrominos[z], gameMap[i + j]) || rectIntersect2(tetrominos[z], gameMap[i + j]) ||
+                    //     rectIntersect3(tetrominos[z], gameMap[i + j]) || rectIntersect4(tetrominos[z], gameMap[i + j])) {
+                    //     tetrominos[z].y1 = tetrominos[z].y1 + 40;
+                    //     tetrominos[z].y2 = tetrominos[z].y2 + 40;
+                    //     tetrominos[z].y3 = tetrominos[z].y3 + 40;
+                    //     tetrominos[z].y4 = tetrominos[z].y4 + 40;
+                    //     tetrominos[z].isPlaced = false;
+                    // }
                 }
             }
+            for (let j = 0; j < 10; j++) {
+                gameMap[i + j].boxUsed = false;
+            }
         }
+        // this.createPiece();
+        // console.log(i);
     }
 
     build() {
