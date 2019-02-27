@@ -9,6 +9,7 @@ function setup() {
 	createCanvas(400, 800);
 	// Initialize Global Variables
 	tetrominos[0] = new OPiece();
+	tetrominos[0].isDropping = true;
 	game.build();
 }
 
@@ -19,19 +20,22 @@ function draw() {
 		fill(gameMap[i].col)
 		rect(gameMap[i].x, gameMap[i].y, 40, 40);
 	}
-	game.boxDetection();
 	game.lineClear();
+	game.boxDetection();
 	for (let i = tetrominos.length - 1; i >= 0; i--) {
 		tetrominos[i].show();
 		if (tetrominos[i].isPlaced == false) {
 			tetrominos[i].moveLogic();
+		}
+		if (tetrominos[i].isDropping == true) {
+			tetrominos[i].isPlaced = false;
 		}
 	}
 }
 
 function keyPressed() {
 	for (let i = tetrominos.length - 1; i >= 0; i--) {
-		if (tetrominos[i].isPlaced == false) {
+		if (tetrominos[i].isDropping == true) {
 			tetrominos[i].rotate();
 			tetrominos[i].moveSide();
 		}

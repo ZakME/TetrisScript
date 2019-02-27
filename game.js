@@ -22,8 +22,9 @@ class Boxes {
                         tetrominos[z].y3 == height - 40 && tetrominos[z].isPlaced == false ||
                         tetrominos[z].y4 == height - 40 && tetrominos[z].isPlaced == false) {
                         tetrominos[z].isPlaced = true;
+                        tetrominos[z].isDropping = false;
                         this.createPiece();
-                    } else if (tetrominos[z].isPlaced == false && tetrominos[z].y1 + 40 == gameMap[i + 10].y &&
+                    } else if (tetrominos[z].isPlaced == false && tetrominos[z].y1 + 40 == gameMap[i + 10].y && 
                         gameMap[i + 10].boxUsed == true ||
                         tetrominos[z].isPlaced == false && tetrominos[z].y2 + 40 == gameMap[i + 10].y &&
                         gameMap[i + 10].boxUsed == true || tetrominos[z].isPlaced == false &&
@@ -31,6 +32,7 @@ class Boxes {
                         tetrominos[z].isPlaced == false && tetrominos[z].y4 + 40 == gameMap[i + 10].y &&
                         gameMap[i + 10].boxUsed == true) {
                         tetrominos[z].isPlaced = true;
+                        tetrominos[z].isDropping = false;
                         this.createPiece();
                     }
                     if (tetrominos[z].isPlaced == true) {
@@ -66,11 +68,14 @@ class Boxes {
                     // tetrominos.splice(z, 1);
                     if (tetrominos[z].y1 < gameMap[i].y || tetrominos[z].y2 < gameMap[i].y ||
                         tetrominos[z].y3 < gameMap[i].y || tetrominos[z].y4, gameMap[i].y) {
+                        tetrominos[z].isPlaced = false;
                         tetrominos[z].y1 = tetrominos[z].y1 + 40;
                         tetrominos[z].y2 = tetrominos[z].y2 + 40;
                         tetrominos[z].y3 = tetrominos[z].y3 + 40;
                         tetrominos[z].y4 = tetrominos[z].y4 + 40;
-                        tetrominos[z].isPlaced = false;
+                        tetrominos[z].wasCleared = true;
+                        tetrominos[z].isPlaced = true;
+                        // tetrominos[z].isDropping = false;
                     }
                     // if (rectIntersect1(tetrominos[z], gameMap[i + j]) || rectIntersect2(tetrominos[z], gameMap[i + j]) ||
                     //     rectIntersect3(tetrominos[z], gameMap[i + j]) || rectIntersect4(tetrominos[z], gameMap[i + j])) {
@@ -91,6 +96,7 @@ class Boxes {
         // console.log(i);
     }
 
+    // Grid of the game and set the properties of the map
     build() {
         for (let y = this.y; y < height; y += height / 20) {
             for (let x = this.x; x < width; x += width / 10) {
@@ -107,22 +113,30 @@ class Boxes {
         }
     }
 
+    // Draw a random piece (to be made into the bag system)
     createPiece() {
         let randNum = Math.random();
         if (randNum < 0.14285) {
             tetrominos.push(new IPiece);
+            tetrominos[tetrominos.length - 1].isDropping = true;
         } else if (randNum < 0.2848) {
             tetrominos.push(new OPiece);
+            tetrominos[tetrominos.length - 1].isDropping = true;
         } else if (randNum < 0.426) {
             tetrominos.push(new LPiece);
+            tetrominos[tetrominos.length - 1].isDropping = true;
         } else if (randNum < 0.5688) {
             tetrominos.push(new TPiece);
+            tetrominos[tetrominos.length - 1].isDropping = true;
         } else if (randNum < 0.7108) {
             tetrominos.push(new JPiece);
+            tetrominos[tetrominos.length - 1].isDropping = true;
         } else if (randNum < 0.8528) {
             tetrominos.push(new SPiece);
+            tetrominos[tetrominos.length - 1].isDropping = true;
         } else {
             tetrominos.push(new ZPiece);
+            tetrominos[tetrominos.length - 1].isDropping = true;
         }
     }
 }

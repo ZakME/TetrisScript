@@ -15,6 +15,7 @@ class IPiece {
         this.col = "#00F3FF";
         this.rotVal = 1;
         this.isPlaced = false;
+        this.isDropping = false;
     }
 
     // Draw the piece
@@ -64,7 +65,7 @@ class IPiece {
     // Logic for moving the pieces
     moveLogic() {
         if (this.isPlaced == false) {
-            if (frameCount % 30 == 0) {
+            if (frameCount % 15 == 0) {
                 this.y1 = this.y1 + 40;
                 this.y2 = this.y2 + 40;
                 this.y3 = this.y3 + 40;
@@ -113,6 +114,7 @@ class OPiece {
         this.y4 = 40;
         this.col = "#FFF300";
         this.isPlaced = false;
+        this.isDropping = false;
     }
 
     show() {
@@ -137,7 +139,7 @@ class OPiece {
     // Logic for moving the pieces
     moveLogic() {
         if (this.isPlaced == false) {
-            if (frameCount % 30 == 0) {
+            if (frameCount % 15 == 0) {
                 this.y1 = this.y1 + 40;
                 this.y2 = this.y2 + 40;
                 this.y3 = this.y3 + 40;
@@ -189,6 +191,7 @@ class TPiece {
         this.col = "#B900FF";
         this.rotVal = 1;
         this.isPlaced = false;
+        this.isDropping = false;
     }
 
     show() {
@@ -250,7 +253,7 @@ class TPiece {
     // Logic for moving the pieces
     moveLogic() {
         if (this.isPlaced == false) {
-            if (frameCount % 30 == 0) {
+            if (frameCount % 15 == 0) {
                 this.y1 = this.y1 + 40;
                 this.y2 = this.y2 + 40;
                 this.y3 = this.y3 + 40;
@@ -300,6 +303,7 @@ class SPiece {
         this.col = "#FF0000";
         this.rotVal = 1;
         this.isPlaced = false;
+        this.isDropping = false;
     }
 
     show() {
@@ -345,7 +349,7 @@ class SPiece {
     // Logic for moving the pieces
     moveLogic() {
         if (this.isPlaced == false) {
-            if (frameCount % 30 == 0) {
+            if (frameCount % 15 == 0) {
                 this.y1 = this.y1 + 40;
                 this.y2 = this.y2 + 40;
                 this.y3 = this.y3 + 40;
@@ -395,6 +399,7 @@ class ZPiece {
         this.col = "#26D104";
         this.rotVal = 1;
         this.isPlaced = false;
+        this.isDropping = false;
     }
 
     show() {
@@ -440,7 +445,7 @@ class ZPiece {
     // Logic for moving the pieces
     moveLogic() {
         if (this.isPlaced == false) {
-            if (frameCount % 30 == 0) {
+            if (frameCount % 15 == 0) {
                 this.y1 = this.y1 + 40;
                 this.y2 = this.y2 + 40;
                 this.y3 = this.y3 + 40;
@@ -490,6 +495,7 @@ class JPiece {
         this.col = "#FF00DC";
         this.rotVal = 1;
         this.isPlaced = false;
+        this.isDropping = false;
     }
 
     show() {
@@ -553,7 +559,7 @@ class JPiece {
     // Logic for moving the pieces
     moveLogic() {
         if (this.isPlaced == false) {
-            if (frameCount % 30 == 0) {
+            if (frameCount % 15 == 0) {
                 this.y1 = this.y1 + 40;
                 this.y2 = this.y2 + 40;
                 this.y3 = this.y3 + 40;
@@ -603,6 +609,7 @@ class LPiece {
         this.col = "#FF8B00";
         this.rotVal = 1;
         this.isPlaced = false;
+        this.isDropping = false;
     }
 
     show() {
@@ -666,7 +673,7 @@ class LPiece {
     // Logic for moving the pieces
     moveLogic() {
         if (this.isPlaced == false) {
-            if (frameCount % 30 == 0) {
+            if (frameCount % 15 == 0) {
                 this.y1 = this.y1 + 40;
                 this.y2 = this.y2 + 40;
                 this.y3 = this.y3 + 40;
