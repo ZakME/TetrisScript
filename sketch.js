@@ -6,22 +6,24 @@ let game = new Boxes();
 
 // SETUP FUNCTION - Runs once at beginning of program
 function setup() {
-	createCanvas(400, 800);
+	createCanvas(520, 800);
 	// Initialize Global Variables
 	tetrominos[0] = new OPiece();
 	tetrominos[0].isDropping = true;
 	game.build();
+	game.nextPiece();
 }
 
 // DRAW FUNCTION - Loops @ 60FPS by default
 function draw() {
-	background(255);
+	background(0);
 	for (let i = 0; i < gameMap.length; i++) {
 		fill(gameMap[i].col)
 		rect(gameMap[i].x, gameMap[i].y, 40, 40);
 	}
 	game.lineClear();
 	game.boxDetection();
+	game.drawInterface();
 	for (let i = tetrominos.length - 1; i >= 0; i--) {
 		tetrominos[i].show();
 		if (tetrominos[i].isPlaced == false) {
@@ -40,4 +42,14 @@ function keyPressed() {
 			tetrominos[i].moveSide();
 		}
 	}
+}
+
+function preload() {
+	images.IPiece = loadImage('assets/tetrisI.png');
+	images.JPiece = loadImage('assets/tetrisJ.png');
+	images.LPiece = loadImage('assets/tetrisL.png');
+	images.OPiece = loadImage('assets/tetrisO.png');
+	images.SPiece = loadImage('assets/tetrisS.png');
+	images.TPiece = loadImage('assets/tetrisT.png');
+	images.ZPiece = loadImage('assets/tetrisZ.png');
 }

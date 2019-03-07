@@ -1,6 +1,9 @@
 "use strict";
 let tetrominos = [];
 let gameMap = [];
+let nextPiece;
+let nextImage;
+let images = {};
 
 class Boxes {
     constructor() {
@@ -24,6 +27,7 @@ class Boxes {
                         tetrominos[z].isPlaced = true;
                         tetrominos[z].isDropping = false;
                         this.createPiece();
+                        this.nextPiece();
                     } else if (tetrominos[z].isPlaced == false && tetrominos[z].y1 + 40 == gameMap[i + 10].y && 
                         gameMap[i + 10].boxUsed == true ||
                         tetrominos[z].isPlaced == false && tetrominos[z].y2 + 40 == gameMap[i + 10].y &&
@@ -34,6 +38,7 @@ class Boxes {
                         tetrominos[z].isPlaced = true;
                         tetrominos[z].isDropping = false;
                         this.createPiece();
+                        this.nextPiece();
                     }
                     if (tetrominos[z].isPlaced == true) {
                         gameMap[i].boxUsed = true;
@@ -99,7 +104,7 @@ class Boxes {
     // Grid of the game and set the properties of the map
     build() {
         for (let y = this.y; y < height; y += height / 20) {
-            for (let x = this.x; x < width; x += width / 10) {
+            for (let x = this.x; x < 400; x += 400 / 10) {
                 let boxUsed = false;
                 let col = 255;
                 gameMap.push({
@@ -113,30 +118,64 @@ class Boxes {
         }
     }
 
-    // Draw a random piece (to be made into the bag system)
+    drawInterface() {
+        // Draw the "next piece" text
+        textFont("Russo One")
+        textSize(30);
+        text("NEXT", 420, 30);
+        // Draw the "next piece" box
+        stroke(255);
+        fill(0);
+        rect(410, 35, 100, 100);
+        // reset stroke for rest of game board
+        stroke(0);
+        // Draw the actual next piece
+        if (nextImage == images.IPiece) {
+            image(images.IPiece, 418, 73, images.IPiece.width / 4, images.IPiece.height / 4);
+        } else if (nextImage == images.OPiece) {
+            image(images.OPiece, 433, 57, images.OPiece.width / 3, images.OPiece.height / 3);
+        } else if (nextImage ==images.LPiece) {
+           image(images.LPiece, 418, 55, images.LPiece.width / 3, images.LPiece.height / 3);
+        } else if (nextImage == images.TPiece) {
+          image(images.TPiece, 418, 55, images.TPiece.width / 3, images.TPiece.height / 3);
+        } else if (nextImage == images.JPiece) {
+           image(images.JPiece, 418, 55, images.JPiece.width / 3, images.JPiece.height / 3);
+        } else if (nextImage == images.SPiece) {
+           image(images.SPiece, 417, 56, images.SPiece.width / 3, images.SPiece.height / 3);
+        } else if (nextImage == images.ZPiece) {
+           image(images.ZPiece, 418, 57, images.ZPiece.width / 3, images.ZPiece.height / 3);
+        }
+    }
+
+    // Draw a random piece
     createPiece() {
+            tetrominos.push(nextPiece);
+            tetrominos[tetrominos.length - 1].isDropping = true;
+    }
+
+    nextPiece() {
         let randNum = Math.random();
         if (randNum < 0.14285) {
-            tetrominos.push(new IPiece);
-            tetrominos[tetrominos.length - 1].isDropping = true;
+            nextPiece = new IPiece;
+            nextImage = images.IPiece;
         } else if (randNum < 0.2848) {
-            tetrominos.push(new OPiece);
-            tetrominos[tetrominos.length - 1].isDropping = true;
+            nextPiece = new OPiece;
+            nextImage = images.OPiece;
         } else if (randNum < 0.426) {
-            tetrominos.push(new LPiece);
-            tetrominos[tetrominos.length - 1].isDropping = true;
+            nextPiece = new LPiece;
+            nextImage = images.LPiece;
         } else if (randNum < 0.5688) {
-            tetrominos.push(new TPiece);
-            tetrominos[tetrominos.length - 1].isDropping = true;
+            nextPiece = new TPiece;
+            nextImage = images.TPiece;
         } else if (randNum < 0.7108) {
-            tetrominos.push(new JPiece);
-            tetrominos[tetrominos.length - 1].isDropping = true;
+            nextPiece = new JPiece;
+            nextImage = images.JPiece;
         } else if (randNum < 0.8528) {
-            tetrominos.push(new SPiece);
-            tetrominos[tetrominos.length - 1].isDropping = true;
+            nextPiece = new SPiece;
+            nextImage = images.SPiece;
         } else {
-            tetrominos.push(new ZPiece);
-            tetrominos[tetrominos.length - 1].isDropping = true;
+            nextPiece = new ZPiece;
+            nextImage = images.ZPiece;
         }
     }
 }

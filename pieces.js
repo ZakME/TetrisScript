@@ -29,7 +29,7 @@ class IPiece {
 
     // Long block of if statements and manually adding values because i dont know the formula
     rotate() {
-        if (keyCode == 38 && this.rotVal == 1) {
+        if (keyCode == 32 && this.rotVal == 1) {
             this.x2 = this.x2 - 40;
             this.y2 = this.y2 + 40;
             this.x3 = this.x3 - 80;
@@ -38,7 +38,7 @@ class IPiece {
             this.y4 = this.y4 + 120;
         }
 
-        if (keyCode == 38 && this.rotVal == 2) {
+        if (keyCode == 32 && this.rotVal == 2) {
             this.x2 = this.x2 + 40;
             this.y2 = this.y2 - 40;
             this.x3 = this.x3 + 80;
@@ -47,7 +47,7 @@ class IPiece {
             this.y4 = this.y4 - 120;
         }
 
-        if (keyCode == 38) {
+        if (keyCode == 32) {
             this.rotVal++;
             if (this.rotVal > 2) {
                 this.rotVal = 1;
@@ -65,7 +65,7 @@ class IPiece {
     // Logic for moving the pieces
     moveLogic() {
         if (this.isPlaced == false) {
-            if (frameCount % 15 == 0) {
+            if (frameCount % 30 == 0) {
                 this.y1 = this.y1 + 40;
                 this.y2 = this.y2 + 40;
                 this.y3 = this.y3 + 40;
@@ -139,7 +139,7 @@ class OPiece {
     // Logic for moving the pieces
     moveLogic() {
         if (this.isPlaced == false) {
-            if (frameCount % 15 == 0) {
+            if (frameCount % 30 == 0) {
                 this.y1 = this.y1 + 40;
                 this.y2 = this.y2 + 40;
                 this.y3 = this.y3 + 40;
@@ -204,14 +204,14 @@ class TPiece {
 
     // Long block of if statements and manually adding values because i dont know the formula
     rotate() {
-        if (keyCode == 38 && this.rotVal == 1) {
+        if (keyCode == 32 && this.rotVal == 1) {
             this.y1 = this.y1 + 80;
             this.x2 = this.x2 - 40;
             this.y2 = this.y2 + 40;
             this.x3 = this.x3 - 80;
         }
 
-        if (keyCode == 38 && this.rotVal == 2) {
+        if (keyCode == 32 && this.rotVal == 2) {
             this.x1 = this.x1 + 80;
             this.y1 = this.y1 - 40;
             this.x2 = this.x2 + 40;
@@ -219,7 +219,7 @@ class TPiece {
             this.y4 = this.y4 - 40;
         }
 
-        if (keyCode == 38 && this.rotVal == 3) {
+        if (keyCode == 32 && this.rotVal == 3) {
             this.x1 = this.x1 - 40;
             this.y1 = this.y1 - 40;
             this.x3 = this.x3 + 40;
@@ -228,7 +228,7 @@ class TPiece {
             this.y4 = this.y4 + 40;
         }
 
-        if (keyCode == 38 && this.rotVal == 4) {
+        if (keyCode == 32 && this.rotVal == 4) {
             this.x1 = this.x1 - 40;
             this.y2 = this.y2 - 40;
             this.y3 = this.y3 - 80;
@@ -236,7 +236,7 @@ class TPiece {
             this.x4 = this.x4 + 40;
         }
 
-        if (keyCode == 38) {
+        if (keyCode == 32) {
             this.rotVal++;
             if (this.rotVal > 4) {
                 this.rotVal = 1;
@@ -253,7 +253,7 @@ class TPiece {
     // Logic for moving the pieces
     moveLogic() {
         if (this.isPlaced == false) {
-            if (frameCount % 15 == 0) {
+            if (frameCount % 30 == 0) {
                 this.y1 = this.y1 + 40;
                 this.y2 = this.y2 + 40;
                 this.y3 = this.y3 + 40;
@@ -300,7 +300,7 @@ class SPiece {
         this.y3 = 40;
         this.x4 = 0;
         this.y4 = 40;
-        this.col = "#FF0000";
+        this.col = "#00FF00";
         this.rotVal = 1;
         this.isPlaced = false;
         this.isDropping = false;
@@ -316,7 +316,7 @@ class SPiece {
 
     // Long block of if statements and manually adding values because i dont know the formula
     rotate() {
-        if (keyCode == 38 && this.rotVal == 1) {
+        if (keyCode == 32 && this.rotVal == 1) {
             this.x1 = this.x1 - 40;
             this.y1 = this.y1 + 80;
             this.y2 = this.y2 + 40;
@@ -324,7 +324,7 @@ class SPiece {
             this.y4 = this.y4 - 40;
         }
 
-        if (keyCode == 38 && this.rotVal == 2) {
+        if (keyCode == 32 && this.rotVal == 2) {
             this.x1 = this.x1 + 40;
             this.y1 = this.y1 - 80;
             this.y2 = this.y2 - 40;
@@ -332,7 +332,7 @@ class SPiece {
             this.y4 = this.y4 + 40;
         }
 
-        if (keyCode == 38) {
+        if (keyCode == 32) {
             this.rotVal++;
             if (this.rotVal > 2) {
                 this.rotVal = 1;
@@ -349,7 +349,7 @@ class SPiece {
     // Logic for moving the pieces
     moveLogic() {
         if (this.isPlaced == false) {
-            if (frameCount % 15 == 0) {
+            if (frameCount % 30 == 0) {
                 this.y1 = this.y1 + 40;
                 this.y2 = this.y2 + 40;
                 this.y3 = this.y3 + 40;
@@ -396,7 +396,7 @@ class ZPiece {
         this.y3 = 40;
         this.x4 = 80;
         this.y4 = 40;
-        this.col = "#26D104";
+        this.col = "#FF0000";
         this.rotVal = 1;
         this.isPlaced = false;
         this.isDropping = false;
@@ -412,7 +412,7 @@ class ZPiece {
 
     // Long block of if statements and manually adding values because i dont know the formula
     rotate() {
-        if (keyCode == 38 && this.rotVal == 1) {
+        if (keyCode == 32 && this.rotVal == 1) {
             this.x1 = this.x1 + 40
             this.y2 = this.y2 + 40;
             this.x3 = this.x3 - 40;
@@ -420,7 +420,7 @@ class ZPiece {
             this.y4 = this.y4 + 40;
         }
 
-        if (keyCode == 38 && this.rotVal == 2) {
+        if (keyCode == 32 && this.rotVal == 2) {
             this.x1 = this.x1 - 40
             this.y2 = this.y2 - 40;
             this.x3 = this.x3 + 40;
@@ -428,7 +428,7 @@ class ZPiece {
             this.y4 = this.y4 - 40;
         }
 
-        if (keyCode == 38) {
+        if (keyCode == 32) {
             this.rotVal++;
             if (this.rotVal > 2) {
                 this.rotVal = 1;
@@ -445,7 +445,7 @@ class ZPiece {
     // Logic for moving the pieces
     moveLogic() {
         if (this.isPlaced == false) {
-            if (frameCount % 15 == 0) {
+            if (frameCount % 30 == 0) {
                 this.y1 = this.y1 + 40;
                 this.y2 = this.y2 + 40;
                 this.y3 = this.y3 + 40;
@@ -492,7 +492,7 @@ class JPiece {
         this.y3 = 80;
         this.x4 = 0;
         this.y4 = 80;
-        this.col = "#FF00DC";
+        this.col = "#0000FF";
         this.rotVal = 1;
         this.isPlaced = false;
         this.isDropping = false;
@@ -508,7 +508,7 @@ class JPiece {
 
     // Long block of if statements and manually adding values because i dont know the formula
     rotate() {
-        if (keyCode == 38 && this.rotVal == 1) {
+        if (keyCode == 32 && this.rotVal == 1) {
             this.x1 = this.x1 - 40
             this.y2 = this.y2 - 40;
             this.y3 = this.y3 - 80;
@@ -517,7 +517,7 @@ class JPiece {
             this.y4 = this.y4 - 40;
         }
 
-        if (keyCode == 38 && this.rotVal == 2) {
+        if (keyCode == 32 && this.rotVal == 2) {
             this.y1 = this.y1 + 80;
             this.x2 = this.x2 - 40;
             this.y2 = this.y2 + 40;
@@ -526,7 +526,7 @@ class JPiece {
             this.y4 = this.y4 - 40;
         }
 
-        if (keyCode == 38 && this.rotVal == 3) {
+        if (keyCode == 32 && this.rotVal == 3) {
             this.x1 = this.x1 + 80;
             this.y1 = this.y1 - 40;
             this.x2 = this.x2 + 40;
@@ -534,7 +534,7 @@ class JPiece {
             this.x4 = this.x4 - 40;
         }
 
-        if (keyCode == 38 && this.rotVal == 4) {
+        if (keyCode == 32 && this.rotVal == 4) {
             this.x1 = this.x1 - 40;
             this.y1 = this.y1 - 40;
             this.x3 = this.x3 + 40;
@@ -542,7 +542,7 @@ class JPiece {
             this.y4 = this.y4 + 80;
         }
 
-        if (keyCode == 38) {
+        if (keyCode == 32) {
             this.rotVal++;
             if (this.rotVal > 4) {
                 this.rotVal = 1;
@@ -559,7 +559,7 @@ class JPiece {
     // Logic for moving the pieces
     moveLogic() {
         if (this.isPlaced == false) {
-            if (frameCount % 15 == 0) {
+            if (frameCount % 30 == 0) {
                 this.y1 = this.y1 + 40;
                 this.y2 = this.y2 + 40;
                 this.y3 = this.y3 + 40;
@@ -622,7 +622,7 @@ class LPiece {
 
     // Long block of if statements and manually adding values because i dont know the formula
     rotate() {
-        if (keyCode == 38 && this.rotVal == 1) {
+        if (keyCode == 32 && this.rotVal == 1) {
             this.y1 = this.y1 + 40;
             this.x2 = this.x2 + 40;
             this.x3 = this.x3 + 80;
@@ -631,7 +631,7 @@ class LPiece {
             this.y4 = this.y4 - 80;
         }
 
-        if (keyCode == 38 && this.rotVal == 2) {
+        if (keyCode == 32 && this.rotVal == 2) {
             this.x1 = this.x1 + 40;
             this.y1 = this.y1 + 40;
             this.x3 = this.x3 - 40;
@@ -639,7 +639,7 @@ class LPiece {
             this.x4 = this.x4 - 80;
         }
 
-        if (keyCode == 38 && this.rotVal == 3) {
+        if (keyCode == 32 && this.rotVal == 3) {
             this.x1 = this.x1 + 40;
             this.y1 = this.y1 - 80;
             this.y2 = this.y2 - 40;
@@ -647,7 +647,7 @@ class LPiece {
             this.y4 = this.y4 + 40;
         }
 
-        if (keyCode == 38 && this.rotVal == 4) {
+        if (keyCode == 32 && this.rotVal == 4) {
             this.x1 = this.x1 - 80;
             this.x2 = this.x2 - 40;
             this.y2 = this.y2 + 40;
@@ -656,7 +656,7 @@ class LPiece {
             this.y4 = this.y4 + 40;
         }
 
-        if (keyCode == 38) {
+        if (keyCode == 32) {
             this.rotVal++;
             if (this.rotVal > 4) {
                 this.rotVal = 1;
@@ -673,7 +673,7 @@ class LPiece {
     // Logic for moving the pieces
     moveLogic() {
         if (this.isPlaced == false) {
-            if (frameCount % 15 == 0) {
+            if (frameCount % 30 == 0) {
                 this.y1 = this.y1 + 40;
                 this.y2 = this.y2 + 40;
                 this.y3 = this.y3 + 40;
