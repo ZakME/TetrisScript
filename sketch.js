@@ -12,6 +12,7 @@ function setup() {
 	tetrominos[0].isDropping = true;
 	game.build();
 	game.nextPiece();
+	game.score = 0;
 }
 
 // DRAW FUNCTION - Loops @ 60FPS by default
@@ -44,6 +45,7 @@ function keyPressed() {
 	}
 }
 
+// Load nextPiece images
 function preload() {
 	images.IPiece = loadImage('assets/tetrisI.png');
 	images.JPiece = loadImage('assets/tetrisJ.png');
