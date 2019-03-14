@@ -96,7 +96,7 @@ class Boxes {
                 // the clear works by pushing the lines off screen and off of the game map. A line in the
                 // middle of the screen can't by pushed to the bottom without taking everything else with it.
                 // (yet)
-                for (let z = 0; z < tetrominos.length; z++) {
+                for (let z = tetrominos.length - 1; z >= 0; z--) {
                     if (tetrominos[z].y1 < gameMap[i].y || tetrominos[z].y2 < gameMap[i].y ||
                         tetrominos[z].y3 < gameMap[i].y || tetrominos[z].y4, gameMap[i].y) {
                         // Push down tetrominos and set vars of tetrominos

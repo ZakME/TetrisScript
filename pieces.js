@@ -83,14 +83,20 @@ class IPiece {
                 this.y4 = this.y4 + 40;
             }
 
-            if (keyCode == 37) {
+            if (keyCode == 37 && this.x1 > 0 &&
+                keyCode == 37 && this.x2 > 0 &&
+                keyCode == 37 && this.x3 > 0 &&
+                keyCode == 37 && this.x4 > 0) {
                 this.x1 = this.x1 - 40;
                 this.x2 = this.x2 - 40;
                 this.x3 = this.x3 - 40;
                 this.x4 = this.x4 - 40;
             }
 
-            if (keyCode == 39) {
+            if (keyCode == 39 && this.x1 < 400 - 40 &&
+                keyCode == 39 && this.x2 < 400 - 40 &&
+                keyCode == 39 && this.x3 < 400 - 40 &&
+                keyCode == 39 && this.x4 < 400 - 40) {
                 this.x1 = this.x1 + 40;
                 this.x2 = this.x2 + 40;
                 this.x3 = this.x3 + 40;
@@ -157,14 +163,20 @@ class OPiece {
                 this.y4 = this.y4 + 40;
             }
 
-            if (keyCode == 37) {
+            if (keyCode == 37 && this.x1 > 0 &&
+                keyCode == 37 && this.x2 > 0 &&
+                keyCode == 37 && this.x3 > 0 &&
+                keyCode == 37 && this.x4 > 0) {
                 this.x1 = this.x1 - 40;
                 this.x2 = this.x2 - 40;
                 this.x3 = this.x3 - 40;
                 this.x4 = this.x4 - 40;
             }
 
-            if (keyCode == 39) {
+            if (keyCode == 39 && this.x1 < 400 - 40 &&
+                keyCode == 39 && this.x2 < 400 - 40 &&
+                keyCode == 39 && this.x3 < 400 - 40 &&
+                keyCode == 39 && this.x4 < 400 - 40) {
                 this.x1 = this.x1 + 40;
                 this.x2 = this.x2 + 40;
                 this.x3 = this.x3 + 40;
@@ -271,14 +283,20 @@ class TPiece {
                 this.y4 = this.y4 + 40;
             }
 
-            if (keyCode == 37) {
+            if (keyCode == 37 && this.x1 > 0 &&
+                keyCode == 37 && this.x2 > 0 &&
+                keyCode == 37 && this.x3 > 0 &&
+                keyCode == 37 && this.x4 > 0) {
                 this.x1 = this.x1 - 40;
                 this.x2 = this.x2 - 40;
                 this.x3 = this.x3 - 40;
                 this.x4 = this.x4 - 40;
             }
 
-            if (keyCode == 39) {
+            if (keyCode == 39 && this.x1 < 400 - 40 &&
+                keyCode == 39 && this.x2 < 400 - 40 &&
+                keyCode == 39 && this.x3 < 400 - 40 &&
+                keyCode == 39 && this.x4 < 400 - 40) {
                 this.x1 = this.x1 + 40;
                 this.x2 = this.x2 + 40;
                 this.x3 = this.x3 + 40;
@@ -367,14 +385,20 @@ class SPiece {
                 this.y4 = this.y4 + 40;
             }
 
-            if (keyCode == 37) {
+            if (keyCode == 37 && this.x1 > 0 &&
+                keyCode == 37 && this.x2 > 0 &&
+                keyCode == 37 && this.x3 > 0 &&
+                keyCode == 37 && this.x4 > 0) {
                 this.x1 = this.x1 - 40;
                 this.x2 = this.x2 - 40;
                 this.x3 = this.x3 - 40;
                 this.x4 = this.x4 - 40;
             }
 
-            if (keyCode == 39) {
+            if (keyCode == 39 && this.x1 < 400 - 40 &&
+                keyCode == 39 && this.x2 < 400 - 40 &&
+                keyCode == 39 && this.x3 < 400 - 40 &&
+                keyCode == 39 && this.x4 < 400 - 40) {
                 this.x1 = this.x1 + 40;
                 this.x2 = this.x2 + 40;
                 this.x3 = this.x3 + 40;
@@ -463,14 +487,20 @@ class ZPiece {
                 this.y4 = this.y4 + 40;
             }
 
-            if (keyCode == 37) {
+            if (keyCode == 37 && this.x1 > 0 &&
+                keyCode == 37 && this.x2 > 0 &&
+                keyCode == 37 && this.x3 > 0 &&
+                keyCode == 37 && this.x4 > 0) {
                 this.x1 = this.x1 - 40;
                 this.x2 = this.x2 - 40;
                 this.x3 = this.x3 - 40;
                 this.x4 = this.x4 - 40;
             }
 
-            if (keyCode == 39) {
+            if (keyCode == 39 && this.x1 < 400 - 40 &&
+                keyCode == 39 && this.x2 < 400 - 40 &&
+                keyCode == 39 && this.x3 < 400 - 40 &&
+                keyCode == 39 && this.x4 < 400 - 40) {
                 this.x1 = this.x1 + 40;
                 this.x2 = this.x2 + 40;
                 this.x3 = this.x3 + 40;
@@ -577,14 +607,20 @@ class JPiece {
                 this.y4 = this.y4 + 40;
             }
 
-            if (keyCode == 37) {
+            if (keyCode == 37 && this.x1 > 0 &&
+                keyCode == 37 && this.x2 > 0 &&
+                keyCode == 37 && this.x3 > 0 &&
+                keyCode == 37 && this.x4 > 0) {
                 this.x1 = this.x1 - 40;
                 this.x2 = this.x2 - 40;
                 this.x3 = this.x3 - 40;
                 this.x4 = this.x4 - 40;
             }
 
-            if (keyCode == 39) {
+            if (keyCode == 39 && this.x1 < 400 - 40 &&
+                keyCode == 39 && this.x2 < 400 - 40 &&
+                keyCode == 39 && this.x3 < 400 - 40 &&
+                keyCode == 39 && this.x4 < 400 - 40) {
                 this.x1 = this.x1 + 40;
                 this.x2 = this.x2 + 40;
                 this.x3 = this.x3 + 40;
@@ -691,14 +727,20 @@ class LPiece {
                 this.y4 = this.y4 + 40;
             }
 
-            if (keyCode == 37) {
+            if (keyCode == 37 && this.x1 > 0 &&
+                keyCode == 37 && this.x2 > 0 &&
+                keyCode == 37 && this.x3 > 0 &&
+                keyCode == 37 && this.x4 > 0) {
                 this.x1 = this.x1 - 40;
                 this.x2 = this.x2 - 40;
                 this.x3 = this.x3 - 40;
                 this.x4 = this.x4 - 40;
             }
 
-            if (keyCode == 39) {
+            if (keyCode == 39 && this.x1 < 400 - 40 &&
+                keyCode == 39 && this.x2 < 400 - 40 &&
+                keyCode == 39 && this.x3 < 400 - 40 &&
+                keyCode == 39 && this.x4 < 400 - 40) {
                 this.x1 = this.x1 + 40;
                 this.x2 = this.x2 + 40;
                 this.x3 = this.x3 + 40;
