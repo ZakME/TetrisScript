@@ -3,18 +3,15 @@
 
 // Declare Global Variables
 let game = new Boxes();
-// Hammertime mobile library testing
-var hammertime = new Hammer("hammerBody");
-hammertime.get('swipe').set({ direction: Hammer.DIRETION_ALL });
-hammertime.on('swipe', function() {
-	alert("hammer working");
-})
+var gameState = "start"
+
 // SETUP FUNCTION - Runs once at beginning of program
 function setup() {
 	createCanvas(520, 800);
+	frameRate(30);
 	// Initialize Global Variables
-	tetrominos[0] = new OPiece();
-	tetrominos[0].isDropping = true;
+	game.nextPiece();
+	game.createPiece();
 	// Init the gameMap
 	game.build();
 	// Give us a next piece
@@ -23,29 +20,40 @@ function setup() {
 	game.score = 0;
 }
 
-// DRAW FUNCTION - Loops @ 60FPS by default
+// DRAW FUNCTION - Loops @ 30fps rather than 60 for performance
 function draw() {
 	background(0);
-	// Draw the rectangle grid (this might also done somwhere else as well..)
-	for (let i = 0; i < gameMap.length; i++) {
-		fill(gameMap[i].col)
-		rect(gameMap[i].x, gameMap[i].y, 40, 40);
-	}
-	// Run our line clearing funtion and our collision detection function
-	game.lineClear();
-	game.boxDetection();
-	// Draw the "NEXT" box and score counter
-	game.drawInterface();
-	// Draw the tetrominos. If a tetromino is not placed, move it down screen using moveLogic
-	for (let i = tetrominos.length - 1; i >= 0; i--) {
-		tetrominos[i].show();
-		if (tetrominos[i].isPlaced == false) {
-			tetrominos[i].moveLogic();
+	//If were starting, draw the start screen
+	if (gameState == "start") {
+		drawStartScreen();
+	// if we click start, get the game going
+	} else if (gameState == "gameOn") {
+		// Draw the rectangle grid (this might also done somwhere else as well..)
+		for (let i = 0; i < gameMap.length; i++) {
+			fill(gameMap[i].col)
+			rect(gameMap[i].x, gameMap[i].y, 40, 40);
 		}
-		if (tetrominos[i].isDropping == true) {
-			tetrominos[i].isPlaced = false;
+		// Run our line clearing funtion and our collision detection function
+		game.lineClear();
+		game.boxDetection();
+		// Draw the "NEXT" box and score counter
+		game.drawInterface();
+		// Draw the tetrominos. If a tetromino is not placed, move it down screen using moveLogic
+		for (let i = tetrominos.length - 1; i >= 0; i--) {
+			tetrominos[i].show();
+			if (tetrominos[i].isPlaced == false) {
+				tetrominos[i].moveLogic();
+			}
+			if (tetrominos[i].isDropping == true) {
+				tetrominos[i].isPlaced = false;
+			}
 		}
+	// If you lose, draw the gameover screen.
+	} else if (gameState == "gameOver") {
+		drawGameOver();
 	}
+
+
 }
 
 function keyPressed() {
@@ -61,6 +69,15 @@ function keyPressed() {
 	}
 }
 
+function mousePressed() {
+	if (gameState == "start") {
+		gameState = "gameOn";
+	} else if (gameState == "gameOver") {
+		setup();
+		gameState = "start";
+	}
+}
+
 // Load nextPiece images
 function preload() {
 	images.IPiece = loadImage('assets/tetrisI.png');
@@ -70,4 +87,20 @@ function preload() {
 	images.SPiece = loadImage('assets/tetrisS.png');
 	images.TPiece = loadImage('assets/tetrisT.png');
 	images.ZPiece = loadImage('assets/tetrisZ.png');
+}
+
+// Start screen
+function drawStartScreen() {
+	textFont("Russo One")
+	fill(255);
+	textAlign(CENTER);
+	textSize(80);
+	text("TetrisScript", width / 2, 200);
+	textSize(40);
+	text("Click to start!", width / 2, 500);
+}
+
+// End screen
+function drawGameOver() {
+	console.log("placeholder")
 }

@@ -45,9 +45,9 @@ class Boxes {
                         tetrominos[z].isPlaced = true;
                         tetrominos[z].isDropping = false;
                         this.placePiece();
-                    // Second case, tetromino lands on another tetromino, check if theres is a tetromino
-                    // present underneath the dropping tetromino by checking 10 spaces ahead of dropping
-                    // tetrominos coords
+                        // Second case, tetromino lands on another tetromino, check if theres is a tetromino
+                        // present underneath the dropping tetromino by checking 10 spaces ahead of dropping
+                        // tetrominos coords
                     } else if (tetrominos[z].isPlaced == false && tetrominos[z].y1 + 40 == gameMap[i + 10].y &&
                         gameMap[i + 10].boxUsed == true ||
                         tetrominos[z].isPlaced == false && tetrominos[z].y2 + 40 == gameMap[i + 10].y &&
@@ -84,7 +84,7 @@ class Boxes {
 
     lineClear() {
         // Iterate through each line of the game map
-        for (let i = 0; i < gameMap.length; i += 10) {
+        for (let i = gameMap.length - 10; i >= 0; i -= 10) {
             // Check to see if a line is completely filled with tetrominos
             if (gameMap[i].boxUsed == true && gameMap[i + 1].boxUsed == true && gameMap[i + 2].boxUsed == true &&
                 gameMap[i + 3].boxUsed == true && gameMap[i + 4].boxUsed == true &&
@@ -96,19 +96,36 @@ class Boxes {
                 // the clear works by pushing the lines off screen and off of the game map. A line in the
                 // middle of the screen can't by pushed to the bottom without taking everything else with it.
                 // (yet)
-                for (let z = tetrominos.length - 1; z >= 0; z--) {
-                    if (tetrominos[z].y1 < gameMap[i].y || tetrominos[z].y2 < gameMap[i].y ||
-                        tetrominos[z].y3 < gameMap[i].y || tetrominos[z].y4, gameMap[i].y) {
+                for (let z = 0; z < tetrominos.length; z++) {
+                    if (tetrominos[z].y1 == gameMap[i].y) {
+                        tetrominos[z].y1 = 5000;
+                    }
+                    if (tetrominos[z].y2 == gameMap[i].y) {
+                        tetrominos[z].y2 = 5000;
+                    }
+                    if (tetrominos[z].y3 == gameMap[i].y) {
+                        tetrominos[z].y3 = 5000;
+                    }
+                    if (tetrominos[z].y4 == gameMap[i].y) {
+                        tetrominos[z].y4 = 5000;
+                    }
+                    for (let j = 0; j < 10; j++) {
+                        gameMap[i + j].boxUsed = false;
+                    }
+
+                    if (tetrominos[z].y1 < gameMap[i].y ||
+                        tetrominos[z].y2 < gameMap[i].y ||
+                        tetrominos[z].y3 < gameMap[i].y ||
+                        tetrominos[z].y4 < gameMap[i].y) {
                         // Push down tetrominos and set vars of tetrominos
-                        tetrominos[z].isPlaced = false;
+                        // tetrominos[z].isPlaced = false;
                         tetrominos[z].y1 = tetrominos[z].y1 + 40;
                         tetrominos[z].y2 = tetrominos[z].y2 + 40;
                         tetrominos[z].y3 = tetrominos[z].y3 + 40;
                         tetrominos[z].y4 = tetrominos[z].y4 + 40;
                         // Var reset for movement purposes
                         tetrominos[z].wasCleared = true;
-                        tetrominos[z].isPlaced = true;
-                        
+                        // tetrominos[z].isPlaced = true;
                     }
                 }
                 // Add score for clearing a line. No multiplier yet for a double, triple, or tetris.
@@ -122,7 +139,6 @@ class Boxes {
                 gameMap[i + j].boxUsed = false;
             }
         }
-        
     }
 
     // Grid of the game and set the properties of the map
@@ -144,6 +160,7 @@ class Boxes {
     }
 
     drawInterface() {
+        textAlign(LEFT);
         // Draw the "next piece" text
         textFont("Russo One")
         textSize(30);
@@ -178,10 +195,10 @@ class Boxes {
 
     // Push the nextPiece to our array of tetrominos and drop it.
     createPiece() {
-        tetrominos.push(nextPiece);
+        tetrominos.push(new IPiece);
         tetrominos[tetrominos.length - 1].isDropping = true;
     }
-    
+
     // Store a random piece in the nextPiece var + set image in the NEXT box
     nextPiece() {
         let randNum = Math.random();
