@@ -1,4 +1,5 @@
 "use strict";
+// Init parent class for similar functions in different tetrominos
 
 // Init I Tetromino
 class IPiece {

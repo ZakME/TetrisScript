@@ -1,10 +1,4 @@
 "use strict";
-// declare globals =/
-let tetrominos = [];
-let gameMap = [];
-let nextPiece;
-let nextImage;
-let images = {};
 
 // Call the class boxes but its pretty much the whole game
 class Boxes {
@@ -16,66 +10,73 @@ class Boxes {
         this.boxUsed = false;
         this.stop = false;
         this.score = 0;
+        this.gameState = "start";
+        // Reimplement
+        this.tetrominos = [];
+        this.gameMap = [];
+        this.nextPiece;
+        this.nextImage;
+        this.images = {};
     }
 
     // Runs code for placing a piece, cleans up code
     placePiece() {
         this.createPiece();
-        this.nextPiece();
+        this.nextPieceF();
         // Add score for placing. 36 because why not
         this.score += 36;
     }
 
-    // All the collision detection for the tetrominos.
+    // All the collision detection for the this.tetrominos.
     boxDetection() {
         // For loop, loops through all spaces on the game board
-        for (let i = gameMap.length - 1; i >= 0; i--) {
-            // For loop, loops through all tetrominos for collision detection on a piece of the game board
-            for (let z = tetrominos.length - 1; z >= 0; z--) {
+        for (let i = this.gameMap.length - 1; i >= 0; i--) {
+            // For loop, loops through all this.tetrominos for collision detection on a piece of the game board
+            for (let z = this.tetrominos.length - 1; z >= 0; z--) {
                 // Check for an intersection between a piece and a board square
-                if (rectIntersect1(tetrominos[z], gameMap[i]) || rectIntersect2(tetrominos[z], gameMap[i]) ||
-                    rectIntersect3(tetrominos[z], gameMap[i]) || rectIntersect4(tetrominos[z], gameMap[i])) {
+                if (rectIntersect1(this.tetrominos[z], this.gameMap[i]) || rectIntersect2(this.tetrominos[z], this.gameMap[i]) ||
+                    rectIntersect3(this.tetrominos[z], this.gameMap[i]) || rectIntersect4(this.tetrominos[z], this.gameMap[i])) {
                     // First case, tetromino hits bottom of board, Check coords and if the tetromino
                     // is dropping or placed
-                    if (tetrominos[z].y1 == height - 40 && tetrominos[z].isPlaced == false ||
-                        tetrominos[z].y2 == height - 40 && tetrominos[z].isPlaced == false ||
-                        tetrominos[z].y3 == height - 40 && tetrominos[z].isPlaced == false ||
-                        tetrominos[z].y4 == height - 40 && tetrominos[z].isPlaced == false) {
+                    if (this.tetrominos[z].y1 == height - 40 && this.tetrominos[z].isPlaced == false ||
+                        this.tetrominos[z].y2 == height - 40 && this.tetrominos[z].isPlaced == false ||
+                        this.tetrominos[z].y3 == height - 40 && this.tetrominos[z].isPlaced == false ||
+                        this.tetrominos[z].y4 == height - 40 && this.tetrominos[z].isPlaced == false) {
                         // Place the dropping tetromino, create a new one
-                        tetrominos[z].isPlaced = true;
-                        tetrominos[z].isDropping = false;
+                        this.tetrominos[z].isPlaced = true;
+                        this.tetrominos[z].isDropping = false;
                         this.placePiece();
                         // Second case, tetromino lands on another tetromino, check if theres is a tetromino
                         // present underneath the dropping tetromino by checking 10 spaces ahead of dropping
-                        // tetrominos coords
-                    } else if (tetrominos[z].isPlaced == false && tetrominos[z].y1 + 40 == gameMap[i + 10].y &&
-                        gameMap[i + 10].boxUsed == true ||
-                        tetrominos[z].isPlaced == false && tetrominos[z].y2 + 40 == gameMap[i + 10].y &&
-                        gameMap[i + 10].boxUsed == true || tetrominos[z].isPlaced == false &&
-                        tetrominos[z].y3 + 40 == gameMap[i + 10].y && gameMap[i + 10].boxUsed == true ||
-                        tetrominos[z].isPlaced == false && tetrominos[z].y4 + 40 == gameMap[i + 10].y &&
-                        gameMap[i + 10].boxUsed == true) {
+                        // this.tetrominos coords
+                    } else if (this.tetrominos[z].isPlaced == false && this.tetrominos[z].y1 + 40 == this.gameMap[i + 10].y &&
+                        this.gameMap[i + 10].boxUsed == true ||
+                        this.tetrominos[z].isPlaced == false && this.tetrominos[z].y2 + 40 == this.gameMap[i + 10].y &&
+                        this.gameMap[i + 10].boxUsed == true || this.tetrominos[z].isPlaced == false &&
+                        this.tetrominos[z].y3 + 40 == this.gameMap[i + 10].y && this.gameMap[i + 10].boxUsed == true ||
+                        this.tetrominos[z].isPlaced == false && this.tetrominos[z].y4 + 40 == this.gameMap[i + 10].y &&
+                        this.gameMap[i + 10].boxUsed == true) {
                         // Place the dropping tetromino, create a new one
-                        tetrominos[z].isPlaced = true;
-                        tetrominos[z].isDropping = false;
+                        this.tetrominos[z].isPlaced = true;
+                        this.tetrominos[z].isDropping = false;
                         this.placePiece();
                     }
                     // After placing the tetromino with either case, set the squares the tetromino is
                     // placed on to used
-                    if (tetrominos[z].isPlaced == true) {
-                        gameMap[i].boxUsed = true;
+                    if (this.tetrominos[z].isPlaced == true) {
+                        this.gameMap[i].boxUsed = true;
                     }
                     // Check if a piece lands and is above the game board and reset game
-                    if (tetrominos[z].isPlaced == true && tetrominos[z].y1 == 0 ||
-                        tetrominos[z].isPlaced == true && tetrominos[z].y2 == 0 ||
-                        tetrominos[z].isPlaced == true && tetrominos[z].y3 == 0 ||
-                        tetrominos[z].isPlaced == true && tetrominos[z].y4 == 0) {
+                    if (this.tetrominos[z].isPlaced == true && this.tetrominos[z].y1 == 0 ||
+                        this.tetrominos[z].isPlaced == true && this.tetrominos[z].y2 == 0 ||
+                        this.tetrominos[z].isPlaced == true && this.tetrominos[z].y3 == 0 ||
+                        this.tetrominos[z].isPlaced == true && this.tetrominos[z].y4 == 0) {
                         // Reset the game.
-                        tetrominos = [];
-                        gameMap = [];
+                        this.tetrominos = [];
+                        this.gameMap = [];
                         setup();
                         // Reset z variable instead of changing loops because lazy
-                        z = tetrominos.length;
+                        z = this.tetrominos.length;
                     }
                 }
             }
@@ -84,62 +85,74 @@ class Boxes {
 
     lineClear() {
         // Iterate through each line of the game map
-        for (let i = gameMap.length - 10; i >= 0; i -= 10) {
-            // Check to see if a line is completely filled with tetrominos
-            if (gameMap[i].boxUsed == true && gameMap[i + 1].boxUsed == true && gameMap[i + 2].boxUsed == true &&
-                gameMap[i + 3].boxUsed == true && gameMap[i + 4].boxUsed == true &&
-                gameMap[i + 5].boxUsed == true && gameMap[i + 6].boxUsed == true &&
-                gameMap[i + 7].boxUsed == true && gameMap[i + 8].boxUsed == true &&
-                gameMap[i + 9].boxUsed == true) {
+        for (let i = this.gameMap.length - 10; i >= 0; i -= 10) {
+            // Check to see if a line is completely filled with this.tetrominos
+            if (this.gameMap[i].boxUsed == true && this.gameMap[i + 1].boxUsed == true && this.gameMap[i + 2].boxUsed == true &&
+                this.gameMap[i + 3].boxUsed == true && this.gameMap[i + 4].boxUsed == true &&
+                this.gameMap[i + 5].boxUsed == true && this.gameMap[i + 6].boxUsed == true &&
+                this.gameMap[i + 7].boxUsed == true && this.gameMap[i + 8].boxUsed == true &&
+                this.gameMap[i + 9].boxUsed == true) {
                 // Push the line off screen
-                // BUG - can't clear lines properly in the middle of the screen. This is because
-                // the clear works by pushing the lines off screen and off of the game map. A line in the
-                // middle of the screen can't by pushed to the bottom without taking everything else with it.
-                // (yet)
-                for (let z = 0; z < tetrominos.length; z++) {
-                    if (tetrominos[z].y1 == gameMap[i].y) {
-                        tetrominos[z].y1 = 5000;
-                    }
-                    if (tetrominos[z].y2 == gameMap[i].y) {
-                        tetrominos[z].y2 = 5000;
-                    }
-                    if (tetrominos[z].y3 == gameMap[i].y) {
-                        tetrominos[z].y3 = 5000;
-                    }
-                    if (tetrominos[z].y4 == gameMap[i].y) {
-                        tetrominos[z].y4 = 5000;
-                    }
-                    for (let j = 0; j < 10; j++) {
-                        gameMap[i + j].boxUsed = false;
+                // Only even number lines clear too many (2 lines clears 3, 4 clears some amount i havent counted, 1 &
+                // 3 clear normally)
+                for (let z = this.tetrominos.length - 1; z >= 0; z--) {
+
+                    if (this.tetrominos[z].y1 == this.gameMap[i].y) {
+                        this.tetrominos[z].y1 = 5000;
+                    } else if (this.tetrominos[z].y1 < this.gameMap[i].y && this.tetrominos[z].y1 != 760) {
+                        this.tetrominos[z].y1 += 40;
                     }
 
-                    if (tetrominos[z].y1 < gameMap[i].y ||
-                        tetrominos[z].y2 < gameMap[i].y ||
-                        tetrominos[z].y3 < gameMap[i].y ||
-                        tetrominos[z].y4 < gameMap[i].y) {
-                        // Push down tetrominos and set vars of tetrominos
-                        // tetrominos[z].isPlaced = false;
-                        tetrominos[z].y1 = tetrominos[z].y1 + 40;
-                        tetrominos[z].y2 = tetrominos[z].y2 + 40;
-                        tetrominos[z].y3 = tetrominos[z].y3 + 40;
-                        tetrominos[z].y4 = tetrominos[z].y4 + 40;
-                        // Var reset for movement purposes
-                        tetrominos[z].wasCleared = true;
-                        // tetrominos[z].isPlaced = true;
+                    if (this.tetrominos[z].y2 == this.gameMap[i].y) {
+                        this.tetrominos[z].y2 = 5000;
+                    } else if (this.tetrominos[z].y2 < this.gameMap[i].y && this.tetrominos[z].y2 != 760) {
+                        this.tetrominos[z].y2 += 40;
+                    }
+
+                    if (this.tetrominos[z].y3 == this.gameMap[i].y) {
+                        this.tetrominos[z].y3 = 5000;
+                    } else if (this.tetrominos[z].y3 < this.gameMap[i].y && this.tetrominos[z].y3 != 760) {
+                        this.tetrominos[z].y3 += 40;
+                    }
+
+                    if (this.tetrominos[z].y4 == this.gameMap[i].y) {
+                        this.tetrominos[z].y4 = 5000;
+                    } else if (this.tetrominos[z].y4 < this.gameMap[i].y && this.tetrominos[z].y4 != 760) {
+                        this.tetrominos[z].y4 += 40;
                     }
                 }
-                // Add score for clearing a line. No multiplier yet for a double, triple, or tetris.
-                // Also no score for advanced moves like t-spins (because they're really not possible
-                // and they break the game)
                 this.score += 1000;
+
             }
-            // Set the boxes that were cleared to be not used (changes back later when a piece is placed 
-            // anywhere)
             for (let j = 0; j < 10; j++) {
-                gameMap[i + j].boxUsed = false;
+                this.gameMap[i + j].boxUsed = false;
             }
+
+            // for (let z = this.tetrominos.length - 1; z >= 0; z--) {
+            //     if (this.tetrominos[z].y1 < this.gameMap[i].y) {
+            //         this.tetrominos[z].y1 = this.tetrominos[z].y1 + 40;
+            //     }
+            //     if (this.tetrominos[z].y2 < this.gameMap[i].y) {
+            //         this.tetrominos[z].y2 = this.tetrominos[z].y2 + 40;
+            //     }
+            //     if (this.tetrominos[z].y3 < this.gameMap[i].y) {
+            //         this.tetrominos[z].y3 = this.tetrominos[z].y3 + 40;
+            //     }
+            //     if (this.tetrominos[z].y4 < this.gameMap[i].y) {
+            //         this.tetrominos[z].y4 = this.tetrominos[z].y4 + 40;
+            //     }
+            //     for (let j = 0; j < 10; j++) {
+            //         this.gameMap[i + j].boxUsed = false;
+            //     }
+            // }
+            // Add score for clearing a line. No multiplier yet for a double, triple, or tetris.
+            // Also no score for advanced moves like t-spins (because they're really not possible
+            // and they break the game)
+
         }
     }
+    // Set the boxes that were cleared to be not used (changes back later when a piece is placed 
+    // anywhere)
 
     // Grid of the game and set the properties of the map
     build() {
@@ -147,7 +160,7 @@ class Boxes {
             for (let x = this.x; x < 400; x += 400 / 10) {
                 let boxUsed = false;
                 let col = 255;
-                gameMap.push({
+                this.gameMap.push({
                     x,
                     y,
                     boxUsed,
@@ -158,6 +171,17 @@ class Boxes {
             }
         }
     }
+
+    // Optimization - If all the pieces of a tetromino are off the game board, splice out the tetromino
+    optimizeTetromino() {
+        for (let p = this.tetrominos.length - 1; p >= 0; p--) {
+            if (this.tetrominos[p].y1 > 2000 && this.tetrominos[p].y2 > 2000 &&
+                this.tetrominos[p].y3 > 2000 && this.tetrominos[p].y4 > 2000) {
+                tetrominos[p].splice(p, 1);
+            }
+        }
+    }
+
 
     drawInterface() {
         textAlign(LEFT);
@@ -176,53 +200,70 @@ class Boxes {
         stroke(0);
         // Draw the actual next piece
         // Custom positions because images are weird dimensions.
-        if (nextImage == images.IPiece) {
-            image(images.IPiece, 418, 73, images.IPiece.width / 4, images.IPiece.height / 4);
-        } else if (nextImage == images.OPiece) {
-            image(images.OPiece, 433, 57, images.OPiece.width / 3, images.OPiece.height / 3);
-        } else if (nextImage == images.LPiece) {
-            image(images.LPiece, 418, 55, images.LPiece.width / 3, images.LPiece.height / 3);
-        } else if (nextImage == images.TPiece) {
-            image(images.TPiece, 418, 55, images.TPiece.width / 3, images.TPiece.height / 3);
-        } else if (nextImage == images.JPiece) {
-            image(images.JPiece, 418, 55, images.JPiece.width / 3, images.JPiece.height / 3);
-        } else if (nextImage == images.SPiece) {
-            image(images.SPiece, 417, 56, images.SPiece.width / 3, images.SPiece.height / 3);
-        } else if (nextImage == images.ZPiece) {
-            image(images.ZPiece, 418, 57, images.ZPiece.width / 3, images.ZPiece.height / 3);
+        if (this.nextImage == this.images.IPiece) {
+            image(this.images.IPiece, 418, 73, this.images.IPiece.width / 4, this.images.IPiece.height / 4);
+        } else if (this.nextImage == this.images.OPiece) {
+            image(this.images.OPiece, 433, 57, this.images.OPiece.width / 3, this.images.OPiece.height / 3);
+        } else if (this.nextImage == this.images.LPiece) {
+            image(this.images.LPiece, 418, 55, this.images.LPiece.width / 3, this.images.LPiece.height / 3);
+        } else if (this.nextImage == this.images.TPiece) {
+            image(this.images.TPiece, 418, 55, this.images.TPiece.width / 3, this.images.TPiece.height / 3);
+        } else if (this.nextImage == this.images.JPiece) {
+            image(this.images.JPiece, 418, 55, this.images.JPiece.width / 3, this.images.JPiece.height / 3);
+        } else if (this.nextImage == this.images.SPiece) {
+            image(this.images.SPiece, 417, 56, this.images.SPiece.width / 3, this.images.SPiece.height / 3);
+        } else if (this.nextImage == this.images.ZPiece) {
+            image(this.images.ZPiece, 418, 57, this.images.ZPiece.width / 3, this.images.ZPiece.height / 3);
         }
     }
 
-    // Push the nextPiece to our array of tetrominos and drop it.
+    // Start screen
+    drawStartScreen() {
+        textFont("Russo One")
+        fill(255);
+        textAlign(CENTER);
+        textSize(80);
+        text("TetrisScript", width / 2, 200);
+        textSize(40);
+        text("Click to start!", width / 2, 500);
+    }
+
+    // End screen
+    drawGameOver() {
+        console.log("placeholder")
+    }
+
+    // Push the nextPiece to our array of this.tetrominos and drop it.
     createPiece() {
-        tetrominos.push(new IPiece);
-        tetrominos[tetrominos.length - 1].isDropping = true;
+        // this.tetrominos.push(this.nextPiece); // Use this for gameplay
+        this.tetrominos.push(new IPiece); // Use this to test line stuff
+        this.tetrominos[this.tetrominos.length - 1].isDropping = true;
     }
 
     // Store a random piece in the nextPiece var + set image in the NEXT box
-    nextPiece() {
+    nextPieceF() {
         let randNum = Math.random();
         if (randNum < 0.14285) {
-            nextPiece = new IPiece;
-            nextImage = images.IPiece;
+            this.nextPiece = new IPiece;
+            this.nextImage = this.images.IPiece;
         } else if (randNum < 0.2848) {
-            nextPiece = new OPiece;
-            nextImage = images.OPiece;
+            this.nextPiece = new OPiece;
+            this.nextImage = this.images.OPiece;
         } else if (randNum < 0.426) {
-            nextPiece = new LPiece;
-            nextImage = images.LPiece;
+            this.nextPiece = new LPiece;
+            this.nextImage = this.images.LPiece;
         } else if (randNum < 0.5688) {
-            nextPiece = new TPiece;
-            nextImage = images.TPiece;
+            this.nextPiece = new TPiece;
+            this.nextImage = this.images.TPiece;
         } else if (randNum < 0.7108) {
-            nextPiece = new JPiece;
-            nextImage = images.JPiece;
+            this.nextPiece = new JPiece;
+            this.nextImage = this.images.JPiece;
         } else if (randNum < 0.8528) {
-            nextPiece = new SPiece;
-            nextImage = images.SPiece;
+            this.nextPiece = new SPiece;
+            this.nextImage = this.images.SPiece;
         } else {
-            nextPiece = new ZPiece;
-            nextImage = images.ZPiece;
+            this.nextPiece = new ZPiece;
+            this.nextImage = this.images.ZPiece;
         }
     }
 }

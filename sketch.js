@@ -1,21 +1,32 @@
 // TOP DOWN PLAYER
 "use strict";
-
-// Declare Global Variables
 let game = new Boxes();
-var gameState = "start"
+// Declare Global Variables
+
+// Load nextPiece images
+function preload() {
+	game.images.IPiece = loadImage('assets/tetrisI.png');
+	game.images.JPiece = loadImage('assets/tetrisJ.png');
+	game.images.LPiece = loadImage('assets/tetrisL.png');
+	game.images.OPiece = loadImage('assets/tetrisO.png');
+	game.images.SPiece = loadImage('assets/tetrisS.png');
+	game.images.TPiece = loadImage('assets/tetrisT.png');
+	game.images.ZPiece = loadImage('assets/tetrisZ.png');
+}
 
 // SETUP FUNCTION - Runs once at beginning of program
 function setup() {
 	createCanvas(520, 800);
 	frameRate(30);
 	// Initialize Global Variables
-	game.nextPiece();
+	game.nextPieceF();
 	game.createPiece();
 	// Init the gameMap
 	game.build();
 	// Give us a next piece
-	game.nextPiece();
+	game.nextPieceF();
+	//Optimization
+	game.optimizeTetromino();
 	// Set score
 	game.score = 0;
 }
@@ -24,33 +35,34 @@ function setup() {
 function draw() {
 	background(0);
 	//If were starting, draw the start screen
-	if (gameState == "start") {
-		drawStartScreen();
+	if (game.gameState == "start") {
+		game.drawStartScreen();
 	// if we click start, get the game going
-	} else if (gameState == "gameOn") {
+	} else if (game.gameState == "gameOn") {
 		// Draw the rectangle grid (this might also done somwhere else as well..)
-		for (let i = 0; i < gameMap.length; i++) {
-			fill(gameMap[i].col)
-			rect(gameMap[i].x, gameMap[i].y, 40, 40);
+		for (let i = 0; i < game.gameMap.length; i++) {
+			fill(game.gameMap[i].col)
+			rect(game.gameMap[i].x, game.gameMap[i].y, 40, 40);
 		}
-		// Run our line clearing funtion and our collision detection function
-		game.lineClear();
+		// Box detection function
 		game.boxDetection();
 		// Draw the "NEXT" box and score counter
 		game.drawInterface();
+		// Run line clearing logic
+		game.lineClear();
 		// Draw the tetrominos. If a tetromino is not placed, move it down screen using moveLogic
-		for (let i = tetrominos.length - 1; i >= 0; i--) {
-			tetrominos[i].show();
-			if (tetrominos[i].isPlaced == false) {
-				tetrominos[i].moveLogic();
+		for (let i = game.tetrominos.length - 1; i >= 0; i--) {
+			game.tetrominos[i].show();
+			if (game.tetrominos[i].isPlaced == false) {
+				game.tetrominos[i].moveLogic();
 			}
-			if (tetrominos[i].isDropping == true) {
-				tetrominos[i].isPlaced = false;
+			if (game.tetrominos[i].isDropping == true) {
+				game.tetrominos[i].isPlaced = false;
 			}
 		}
 	// If you lose, draw the gameover screen.
-	} else if (gameState == "gameOver") {
-		drawGameOver();
+	} else if (game.gameState == "gameOver") {
+		game.drawGameOver();
 	}
 
 
@@ -61,46 +73,19 @@ function keyPressed() {
 
 	// A frame perfect tap on the down button can cause a tetromino to fall through another tetromino if
 	// it is tapped on the same frame that moveLogic is called (which is called every 30? frames)
-	for (let i = tetrominos.length - 1; i >= 0; i--) {
-		if (tetrominos[i].isDropping == true) {
-			tetrominos[i].rotate();
-			tetrominos[i].moveSide();
+	for (let i = game.tetrominos.length - 1; i >= 0; i--) {
+		if (game.tetrominos[i].isDropping == true) {
+			game.tetrominos[i].rotate();
+			game.tetrominos[i].moveSide();
 		}
 	}
 }
 
 function mousePressed() {
-	if (gameState == "start") {
-		gameState = "gameOn";
-	} else if (gameState == "gameOver") {
+	if (game.gameState == "start") {
+		game.gameState = "gameOn";
+	} else if (game.gameState == "gameOver") {
 		setup();
-		gameState = "start";
+		game.gameState = "start";
 	}
-}
-
-// Load nextPiece images
-function preload() {
-	images.IPiece = loadImage('assets/tetrisI.png');
-	images.JPiece = loadImage('assets/tetrisJ.png');
-	images.LPiece = loadImage('assets/tetrisL.png');
-	images.OPiece = loadImage('assets/tetrisO.png');
-	images.SPiece = loadImage('assets/tetrisS.png');
-	images.TPiece = loadImage('assets/tetrisT.png');
-	images.ZPiece = loadImage('assets/tetrisZ.png');
-}
-
-// Start screen
-function drawStartScreen() {
-	textFont("Russo One")
-	fill(255);
-	textAlign(CENTER);
-	textSize(80);
-	text("TetrisScript", width / 2, 200);
-	textSize(40);
-	text("Click to start!", width / 2, 500);
-}
-
-// End screen
-function drawGameOver() {
-	console.log("placeholder")
 }
