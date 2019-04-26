@@ -85,7 +85,7 @@ class Boxes {
 
     lineClear() {
         // Iterate through each line of the game map
-        for (let i = this.gameMap.length - 10; i >= 0; i -= 10) {
+        for (let i = 0; i < this.gameMap.length; i += 10) {
             // Check to see if a line is completely filled with this.tetrominos
             if (this.gameMap[i].boxUsed == true && this.gameMap[i + 1].boxUsed == true && this.gameMap[i + 2].boxUsed == true &&
                 this.gameMap[i + 3].boxUsed == true && this.gameMap[i + 4].boxUsed == true &&
@@ -95,60 +95,43 @@ class Boxes {
                 // Push the line off screen
                 // Only even number lines clear too many (2 lines clears 3, 4 clears some amount i havent counted, 1 &
                 // 3 clear normally)
-                for (let z = this.tetrominos.length - 1; z >= 0; z--) {
+                for (let z = 0; z < this.tetrominos.length; z++) {
 
                     if (this.tetrominos[z].y1 == this.gameMap[i].y) {
                         this.tetrominos[z].y1 = 5000;
-                    } else if (this.tetrominos[z].y1 < this.gameMap[i].y && this.tetrominos[z].y1 != 760) {
+                    } else if (this.tetrominos[z].y1 < this.gameMap[i].y) {
                         this.tetrominos[z].y1 += 40;
                     }
 
+
                     if (this.tetrominos[z].y2 == this.gameMap[i].y) {
                         this.tetrominos[z].y2 = 5000;
-                    } else if (this.tetrominos[z].y2 < this.gameMap[i].y && this.tetrominos[z].y2 != 760) {
+                    } else if (this.tetrominos[z].y2 < this.gameMap[i].y) {
                         this.tetrominos[z].y2 += 40;
                     }
 
+
                     if (this.tetrominos[z].y3 == this.gameMap[i].y) {
                         this.tetrominos[z].y3 = 5000;
-                    } else if (this.tetrominos[z].y3 < this.gameMap[i].y && this.tetrominos[z].y3 != 760) {
+                    } else if (this.tetrominos[z].y3 < this.gameMap[i].y) {
                         this.tetrominos[z].y3 += 40;
                     }
 
+
                     if (this.tetrominos[z].y4 == this.gameMap[i].y) {
                         this.tetrominos[z].y4 = 5000;
-                    } else if (this.tetrominos[z].y4 < this.gameMap[i].y && this.tetrominos[z].y4 != 760) {
+                    } else if (this.tetrominos[z].y4 < this.gameMap[i].y) {
                         this.tetrominos[z].y4 += 40;
                     }
+
                 }
+
                 this.score += 1000;
 
             }
             for (let j = 0; j < 10; j++) {
                 this.gameMap[i + j].boxUsed = false;
             }
-
-            // for (let z = this.tetrominos.length - 1; z >= 0; z--) {
-            //     if (this.tetrominos[z].y1 < this.gameMap[i].y) {
-            //         this.tetrominos[z].y1 = this.tetrominos[z].y1 + 40;
-            //     }
-            //     if (this.tetrominos[z].y2 < this.gameMap[i].y) {
-            //         this.tetrominos[z].y2 = this.tetrominos[z].y2 + 40;
-            //     }
-            //     if (this.tetrominos[z].y3 < this.gameMap[i].y) {
-            //         this.tetrominos[z].y3 = this.tetrominos[z].y3 + 40;
-            //     }
-            //     if (this.tetrominos[z].y4 < this.gameMap[i].y) {
-            //         this.tetrominos[z].y4 = this.tetrominos[z].y4 + 40;
-            //     }
-            //     for (let j = 0; j < 10; j++) {
-            //         this.gameMap[i + j].boxUsed = false;
-            //     }
-            // }
-            // Add score for clearing a line. No multiplier yet for a double, triple, or tetris.
-            // Also no score for advanced moves like t-spins (because they're really not possible
-            // and they break the game)
-
         }
     }
     // Set the boxes that were cleared to be not used (changes back later when a piece is placed 
@@ -235,8 +218,8 @@ class Boxes {
 
     // Push the nextPiece to our array of this.tetrominos and drop it.
     createPiece() {
-        // this.tetrominos.push(this.nextPiece); // Use this for gameplay
-        this.tetrominos.push(new IPiece); // Use this to test line stuff
+        this.tetrominos.push(this.nextPiece); // Use this for gameplay
+        // this.tetrominos.push(new IPiece); // Use this to test line stuff
         this.tetrominos[this.tetrominos.length - 1].isDropping = true;
     }
 

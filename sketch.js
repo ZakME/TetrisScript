@@ -1,6 +1,8 @@
 // TOP DOWN PLAYER
 "use strict";
 let game = new Boxes();
+
+
 // Declare Global Variables
 
 // Load nextPiece images
