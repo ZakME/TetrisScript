@@ -52,6 +52,8 @@ function draw() {
 		game.drawInterface();
 		// Run line clearing logic
 		game.lineClear();
+		// Optimaztion because i realized it's never actually being run...
+		game.optimizeTetromino();
 		// Draw the tetrominos. If a tetromino is not placed, move it down screen using moveLogic
 		for (let i = game.tetrominos.length - 1; i >= 0; i--) {
 			game.tetrominos[i].show();

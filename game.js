@@ -160,7 +160,7 @@ class Boxes {
         for (let p = this.tetrominos.length - 1; p >= 0; p--) {
             if (this.tetrominos[p].y1 > 2000 && this.tetrominos[p].y2 > 2000 &&
                 this.tetrominos[p].y3 > 2000 && this.tetrominos[p].y4 > 2000) {
-                tetrominos[p].splice(p, 1);
+                this.tetrominos.splice(p, 1);
             }
         }
     }
